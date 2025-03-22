@@ -1,8 +1,8 @@
 name: py312aiwatermark
 channels:
-  - nvidia
+  # - nvidia
   - conda-forge
-  - defaults
+  # - defaults
 dependencies:
   - python=3.12
   - pip

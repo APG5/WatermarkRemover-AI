@@ -1,0 +1,7 @@
+force_format: JPG
+input_path: /home/ngoc/scrapPG/alo/anh/BDS-HIRE-000007061_image_10_21-14-18-0-2025.jpg
+max_bbox_percent: 20
+mode: single
+output_path: /home/ngoc/scrapPG/alo/anh_clear
+overwrite: false
+transparent: false

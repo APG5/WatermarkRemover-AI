@@ -69,7 +69,11 @@ done
 # Check if Conda is installed
 if ! command -v conda &> /dev/null; then
     echo "Conda could not be found. Please install Conda or Miniconda and try again."
-    exit 1
+    wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+    bash Miniforge3-Linux-x86_64.sh
+    conda config --set ssl_verify false
+    conda update conda
+    #exit 1
 fi
 
 # Determine installation directory
@@ -117,10 +121,13 @@ if [ "$ACTIVATE_ONLY" = true ]; then
 fi
 
 # Ensure required dependencies are installed
-pip list | grep -q PyQt6 || pip install PyQt6
-pip list | grep -q transformers || pip install transformers
-pip list | grep -q iopaint || pip install iopaint
-pip list | grep -q opencv-python-headless || pip install opencv-python-headless
+pip show PyQt6 > /dev/null 2>&1 || pip install PyQt6
+pip show transformers > /dev/null 2>&1 || pip install transformers
+pip show iopaint > /dev/null 2>&1 || pip install iopaint
+pip show opencv-python-headless > /dev/null 2>&1 || pip install opencv-python-headless
+# pip list | grep -q transformers  > /dev/null 2>&1 || pip install transformers
+# pip list | grep -q iopaint  > /dev/null 2>&1 || pip install iopaint
+# pip list | grep -q opencv-python-headless  > /dev/null 2>&1 || pip install opencv-python-headless
 
 # Run remwm.py with passed arguments
 python remwm.py "${SCRIPT_ARGS[@]}"
